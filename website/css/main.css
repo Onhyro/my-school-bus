@@ -1,0 +1,8 @@
+
+body {width: 100%; height: 100%; margin: 0;}
+
+#header 			{width: 100%; min-height: 80px; background-color: #1A1A1A;}
+#section 		{width: 100%; 	  height: 659px; background-color: #595959;}
+#presentation	{width: 60%; height: 100%; display: inline-block; background-color: #595959; float: left;}
+#ingress		{width: 40%; height: 100%; display: inline-block; background-color: #595959; float: right;}
+#footer			{width: 100%; min-height: 60px; background-color: #1A1A1A; margin-bottom: 0;}
