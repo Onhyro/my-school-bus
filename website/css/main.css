@@ -1,7 +1,7 @@
 
-body {width: 100%; height: 100%; margin: 0;}
+body {width: 100%; height: 100%; margin: 0; padding: 0;}
 
-#header 			{width: 100%; min-height: 80px; background-color: #1A1A1A;}
+#header 		{width: 100%; min-height: 80px; background-color: #1A1A1A;}
 #section 		{width: 100%; 	  height: 554px; background-color: #595959;}
 #presentation	{width: 54%; height: 100%; display: inline-block; background-color: #595959; float: left;
 				padding: 40px 100px 40px 200px; margin: 0;}
@@ -10,17 +10,30 @@ body {width: 100%; height: 100%; margin: 0;}
 #footer			{clear: both; width: 100%; min-height: 60px; background-color: #1A1A1A; margin-bottom: 0;}
 
 #title			{margin: 0; color: #ffb400; padding: 20px 0 20px 180px; display: inline-block;}
-#service		{margin: 0; padding: 20px 0 0 0; color: #ffb400; text-align: center;}
-#motto			{margin: 0; padding: 20px 0 0 0; color: #ffb400; text-align: center;}
+#service		{margin: 0; padding: 20px 0 0 0; color: #ffb400; text-align: center; background-color: #595959;}
+#motto			{margin: 0; padding: 20px 0 0 0; color: #ffb400; text-align: center; background-color: #595959;}
 
 #buttons		{float: right; padding: 25px 180px 0 50px}
 
 #first-button	{display: inline-block; padding: 0 20px 0 0;}
 #second-button	{display: inline-block;}
 
-.button			{border-style: solid; border-width:3px; font-size: 15px; padding: 2px 30px 2px 30px; border-color: #FFB400; background-color: #1A1A1A; color: #FFB400;}
-.button:hover	{border-color: #FFC844; color: #FFB400; background-color: #323232}
-#login:			{}
-#signup:		{}
+.button                 {border-style: solid; border-width:3px; font-size: 15px; padding: 2px 30px 2px 30px;}
+.clicked-button         {border-color: #7F7F7F; background-color: #FFB400; color: #7F7F7F;}
+.unclicked-button       {border-color: #FFB400; background-color: #1A1A1A; color: #FFB400;}
+.unclicked-button:hover {border-color: #FFC844; background-color: #323232; color: #FFB400;}
+#login                  {}
+#signup                 {}
 
 #informations	{text-align: center; padding: 10px 0 10px 0; color: #FFB400; font-size: 12px; height: 100%}
+
+.form-signin-heading	{color: #FFB400;}
+.remember-password		{color: #FFB400;}
+.form-control			{width: 40%;}
+.btn					{width: 40%;}
+
+.form-signup	{background-color: #595959;}
+.form-signin	{display: none;}
+
+.row                {margin: 0;}
+.container-fluid    {padding: 0;}

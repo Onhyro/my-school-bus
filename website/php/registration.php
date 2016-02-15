@@ -20,6 +20,7 @@
 	$password = '';
 	try{
 		$connessione = new PDO('mysql:host=localhost;dbname=db', $user, $password);
+		$connessione->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	} catch (PDOException $exception) {
 		die("Errore durante la connessione al database: ".$exception->getMessage());
 	}

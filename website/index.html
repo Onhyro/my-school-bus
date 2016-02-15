@@ -5,33 +5,91 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<title>MySchoolBus</title>
 		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen"/>
-		
+		<script>
+			$(document).ready(function(){
+                $btnSignup = $("#signup");
+                $btnLogin = $("#login");
+                //$btnSignup.addClass("clicked-button");
+				$btnSignup.click(function(){
+                    if($btnSignup.hasClass("unclicked-button")){
+                        $btnSignup.removeClass("unclicked-button");
+                        $btnSignup.addClass("clicked-button");
+                        $btnLogin.removeClass("clicked-button");
+                        $btnLogin.addClass("unclicked-button");
+                    }
+				});
+                $btnLogin.click(function(){
+                    if($btnLogin.hasClass("unclicked-button")){
+                        $btnLogin.removeClass("unclicked-button");
+                        $btnSignup.removeClass("clicked-button");
+                        $btnLogin.addClass("clicked-button");
+                        $btnSignup.addClass("unclicked-button");
+                    }
+				});
+			});
+		</script>
 	</head>
-	<body>
-		<header id="header">
-			<h1 id="title">MySchoolBus</h1>
-			<div id="buttons">
+	<body class="container-fluid">
+		<header id="header" class="row">
+			<h1 id="title" class="col-xs-6 col-lg-7 col-sm-7">MySchoolBus</h1>
+			<div id="buttons" class="col-xs-6 col-lg-5 col-sm-5">
 				<div id="first-button">
-					<button class="button" id="login">LOGIN</button>
+					<button class="button unclicked-button" id="login">LOGIN</button>
 				</div>
 				<div id="second-button">
-					<button class="button" id="signup">SIGNUP</button>
+					<button class="button clicked-button" id="signup">SIGNUP</button>
 				</div>
 			</div>
-		</header>
-		<section id="section">
+		</header>        
+		<section id="section" class="row">
 			<h3 id="service">MySchoolBus carpooling service</h3>
 			<h1 id="motto">Il modo migliore per andare a scuola</h1>
-			<div id="presentation">
-				<img src="./img/logo.png" width="100%" height="100%"/>
-				
+			<div id="presentation" class="col-xs-6 col-lg-7 col-sm-7">
+				<img src="./img/logo.png"/>
 			</div>
-			<div id="ingress">
-				
+			<div id="ingress" class="col-xs-6 col-lg-5 col-sm-5">
+				<div id="signup">
+					<form class="form-signup">
+						<h2 class="form-signin-heading">Iscriviti</h2>
+						<label for="inputName" class="sr-only">Nome</label>
+						<input type="name" id="inputName" class="form-control" placeholder="Nome" required autofocus>
+						<label for="inputSurname" class="sr-only">Cognome</label>
+						<input type="surname" id="inputSurname" class="form-control" placeholder="Cognome" required autofocus>
+						<label for="inputEmail" class="sr-only">Email address</label>
+						<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>	
+						<label for="inputNickname" class="sr-only">Nickname</label>
+						<input type="nickname" id="inputNickname" class="form-control" placeholder="Nickname" required autofocus>		
+						<label for="inputPassword" class="sr-only">Password</label>
+						<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>						
+						<div class="checkbox">
+						  <label id="remember-password">
+							<input type="checkbox" value="remember-me"> Memorizza password
+						  </label>
+						</div>
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					</form>
+				</div>
+				<div id="signin">
+					<form class="form-signin">
+						<h2 class="form-signin-heading">Accedi</h2>
+						
+						<label for="inputEmail" class="sr-only">Email address</label>
+						<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+						
+						<label for="inputPassword" class="sr-only">Password</label>
+						<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+						
+						<div class="checkbox">
+						  <label id="remember-password">
+							<input type="checkbox" value="remember-me"> Memorizza password
+						  </label>
+						</div>
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					</form>
+				</div>
 			</div>
 		</section>
 		<footer id="footer">
