@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 22, 2016 alle 23:09
+-- Creato il: Mar 23, 2016 alle 22:42
 -- Versione del server: 10.0.17-MariaDB
 -- Versione PHP: 5.5.30
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `myschoolbus`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `abitazioni`
+--
+
+CREATE TABLE `abitazioni` (
+  `CodAbitazione` int(6) NOT NULL,
+  `Indirizzo` varchar(100) NOT NULL,
+  `Immagine` blob NOT NULL,
+  `CodComune` smallint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -8172,6 +8185,39 @@ INSERT INTO `comuni` (`CodComune`, `Nome`, `CodProvincia`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `gradiscuole`
+--
+
+CREATE TABLE `gradiscuole` (
+  `CodGrado` tinyint(1) NOT NULL,
+  `Nome` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `gradiscuole`
+--
+
+INSERT INTO `gradiscuole` (`CodGrado`, `Nome`) VALUES
+(1, 'Infanzia'),
+(2, 'Elementare'),
+(3, 'Media'),
+(4, 'Superiore'),
+(5, 'Altro');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `gruppi`
+--
+
+CREATE TABLE `gruppi` (
+  `CodUtente` int(6) NOT NULL,
+  `CodAbitazione` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `marcheveicoli`
 --
 
@@ -8239,7 +8285,7 @@ INSERT INTO `marcheveicoli` (`CodMarca`, `Nome`) VALUES
 --
 
 CREATE TABLE `modelliveicoli` (
-  `CodModello` int(3) NOT NULL,
+  `CodModello` int(5) NOT NULL,
   `Nome` varchar(30) NOT NULL,
   `CodMarca` tinyint(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -8697,6 +8743,20 @@ INSERT INTO `modelliveicoli` (`CodModello`, `Nome`, `CodMarca`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `passaggi`
+--
+
+CREATE TABLE `passaggi` (
+  `CodPassaggio` int(6) NOT NULL,
+  `Data` date NOT NULL,
+  `Ora` time NOT NULL,
+  `CodVeicolo` int(6) NOT NULL,
+  `Commento` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `province`
 --
 
@@ -8859,9 +8919,117 @@ INSERT INTO `regioni` (`CodRegione`, `Nome`) VALUES
 (19, 'Valle d''Aosta'),
 (20, 'Veneto');
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `scuole`
+--
+
+CREATE TABLE `scuole` (
+  `CodScuola` int(6) NOT NULL,
+  `Nome` varchar(50) NOT NULL,
+  `Indirizzo` varchar(100) NOT NULL,
+  `CodComune` smallint(4) NOT NULL,
+  `CodTipo` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tipiscuole`
+--
+
+CREATE TABLE `tipiscuole` (
+  `CodTipo` tinyint(2) NOT NULL,
+  `Nome` varchar(100) NOT NULL,
+  `CodGrado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `tipiscuole`
+--
+
+INSERT INTO `tipiscuole` (`CodTipo`, `Nome`, `CodGrado`) VALUES
+(1, 'Liceo Classico', 4),
+(2, 'Liceo Scientifico', 4),
+(3, 'Liceo Classico - Scientifico - Scienze Applicate', 4),
+(4, 'Liceo Scientifico e Linguistico', 4),
+(5, 'Istituto Magistrale', 4),
+(6, 'Istituto Magistrale Liceo delle Scienze Umane', 4),
+(7, 'Liceo Artistico', 4),
+(8, 'Liceo Artistico e Musicale', 4),
+(9, 'I.T. Istituto Tecnico Agrario', 4),
+(10, 'I.T. Istituto Tecnico Geometri', 4),
+(11, 'I.T. Istituto Tecnico per Geometri e Ragionieri', 4),
+(12, 'I.T. Istituto Tecnico Geometri - Tecnico Industriale - Liceo Scientifico', 4),
+(13, 'I.T.C. Istituto Tecnico Commerciale', 4),
+(14, 'I.T.T. Istituto Tecnico Turismo', 4),
+(15, 'I.T.C.G Istituto Tecnico Commerciale e per Geometri', 4),
+(16, 'I.T.I. Istituto Tecnico Industriale', 4),
+(17, 'I.T.I.S. Istituto Tecnico Industriale Statale', 4),
+(18, 'I.P. Istituto Professionale Agricoltura', 4),
+(19, 'I.P. Istituto Professionale Arte Bianca', 4),
+(20, 'I.P.S. Istituto Professionale di Stato Alberghiero Ristorazione', 4),
+(21, 'I.P.S. Istituto Professionale di Stato Enogastronomia e Ospitalità Alberghiera', 4),
+(22, 'I.P.S.C.T. Istituto Professionale per i Servizi Commerciali e Turistici', 4),
+(23, 'I.P.S.I.A. Istituto Professionale Statale per l''Industria e l''Artigianato', 4),
+(24, 'I.P.S.S. Istituto Professionale di Stato per i Servizi Commerciali', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `utenti`
+--
+
+CREATE TABLE `utenti` (
+  `CodUtenti` int(6) NOT NULL,
+  `Nome` varchar(50) NOT NULL,
+  `Cognome` varchar(50) NOT NULL,
+  `Nickname` varchar(20) NOT NULL,
+  `Telefono` varchar(10) NOT NULL,
+  `Password` varchar(30) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `AnnoNascita` year(4) NOT NULL,
+  `Sesso` bit(1) NOT NULL,
+  `Descrizione` varchar(500) NOT NULL,
+  `Immagine` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `veicoli`
+--
+
+CREATE TABLE `veicoli` (
+  `CodVeicolo` int(6) NOT NULL,
+  `CodCategoria` tinyint(3) NOT NULL,
+  `CodModello` int(5) NOT NULL,
+  `CodUtente` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `viaggiatori`
+--
+
+CREATE TABLE `viaggiatori` (
+  `CodUtente` int(6) NOT NULL,
+  `CodPassaggio` int(6) NOT NULL,
+  `CodScuola` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indici per le tabelle scaricate
 --
+
+--
+-- Indici per le tabelle `abitazioni`
+--
+ALTER TABLE `abitazioni`
+  ADD PRIMARY KEY (`CodAbitazione`),
+  ADD KEY `Fk_Abitazioni_Comuni1_Index` (`CodComune`);
 
 --
 -- Indici per le tabelle `categorieveicoli`
@@ -8877,6 +9045,20 @@ ALTER TABLE `comuni`
   ADD KEY `Fk_Comuni_Province1_Index` (`CodProvincia`);
 
 --
+-- Indici per le tabelle `gradiscuole`
+--
+ALTER TABLE `gradiscuole`
+  ADD PRIMARY KEY (`CodGrado`);
+
+--
+-- Indici per le tabelle `gruppi`
+--
+ALTER TABLE `gruppi`
+  ADD PRIMARY KEY (`CodUtente`,`CodAbitazione`),
+  ADD KEY `Fk_Gruppi_Utenti1_Index` (`CodUtente`),
+  ADD KEY `Fk_Gruppi_Abitazioni1_Index` (`CodAbitazione`);
+
+--
 -- Indici per le tabelle `marcheveicoli`
 --
 ALTER TABLE `marcheveicoli`
@@ -8888,6 +9070,13 @@ ALTER TABLE `marcheveicoli`
 ALTER TABLE `modelliveicoli`
   ADD PRIMARY KEY (`CodModello`),
   ADD KEY `Fk_ModelliVeicoli_MarcheVeicoli1_Index` (`CodMarca`);
+
+--
+-- Indici per le tabelle `passaggi`
+--
+ALTER TABLE `passaggi`
+  ADD PRIMARY KEY (`CodPassaggio`),
+  ADD KEY `Fk_Passaggi_Veicoli1_Index` (`CodVeicolo`);
 
 --
 -- Indici per le tabelle `province`
@@ -8903,9 +9092,52 @@ ALTER TABLE `regioni`
   ADD PRIMARY KEY (`CodRegione`);
 
 --
+-- Indici per le tabelle `scuole`
+--
+ALTER TABLE `scuole`
+  ADD PRIMARY KEY (`CodScuola`),
+  ADD KEY `Fk_Scuole_Comuni1_Index` (`CodComune`),
+  ADD KEY `Fk_Scuole_TipiScuole1_Index` (`CodTipo`);
+
+--
+-- Indici per le tabelle `tipiscuole`
+--
+ALTER TABLE `tipiscuole`
+  ADD PRIMARY KEY (`CodTipo`),
+  ADD KEY `Fk_TipiScuole_GradiScuole1_Index` (`CodGrado`);
+
+--
+-- Indici per le tabelle `utenti`
+--
+ALTER TABLE `utenti`
+  ADD PRIMARY KEY (`CodUtenti`);
+
+--
+-- Indici per le tabelle `veicoli`
+--
+ALTER TABLE `veicoli`
+  ADD PRIMARY KEY (`CodVeicolo`),
+  ADD KEY `Fk_Veicoli_CategorieVeicoli1_Index` (`CodCategoria`),
+  ADD KEY `Fk_Veicoli_ModelliVeicoli1_Index` (`CodModello`),
+  ADD KEY `Fk_Veicoli_Utenti1_Index` (`CodUtente`);
+
+--
+-- Indici per le tabelle `viaggiatori`
+--
+ALTER TABLE `viaggiatori`
+  ADD PRIMARY KEY (`CodUtente`,`CodPassaggio`,`CodScuola`),
+  ADD KEY `Fk_UtentiInViaggio_Passaggi1_Index` (`CodPassaggio`),
+  ADD KEY `Fk_UtentiInViaggio_Scuole1_Index` (`CodScuola`);
+
+--
 -- AUTO_INCREMENT per le tabelle scaricate
 --
 
+--
+-- AUTO_INCREMENT per la tabella `abitazioni`
+--
+ALTER TABLE `abitazioni`
+  MODIFY `CodAbitazione` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `categorieveicoli`
 --
@@ -8917,6 +9149,11 @@ ALTER TABLE `categorieveicoli`
 ALTER TABLE `comuni`
   MODIFY `CodComune` smallint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8093;
 --
+-- AUTO_INCREMENT per la tabella `gradiscuole`
+--
+ALTER TABLE `gradiscuole`
+  MODIFY `CodGrado` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT per la tabella `marcheveicoli`
 --
 ALTER TABLE `marcheveicoli`
@@ -8925,12 +9162,37 @@ ALTER TABLE `marcheveicoli`
 -- AUTO_INCREMENT per la tabella `modelliveicoli`
 --
 ALTER TABLE `modelliveicoli`
-  MODIFY `CodModello` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
+  MODIFY `CodModello` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
+--
+-- AUTO_INCREMENT per la tabella `passaggi`
+--
+ALTER TABLE `passaggi`
+  MODIFY `CodPassaggio` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `regioni`
 --
 ALTER TABLE `regioni`
   MODIFY `CodRegione` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT per la tabella `scuole`
+--
+ALTER TABLE `scuole`
+  MODIFY `CodScuola` int(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `tipiscuole`
+--
+ALTER TABLE `tipiscuole`
+  MODIFY `CodTipo` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT per la tabella `utenti`
+--
+ALTER TABLE `utenti`
+  MODIFY `CodUtenti` int(6) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `veicoli`
+--
+ALTER TABLE `veicoli`
+  MODIFY `CodVeicolo` int(6) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
