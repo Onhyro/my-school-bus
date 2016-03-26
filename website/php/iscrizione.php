@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
 	if (isset($_POST['nome']) &&
 		isset($_POST['cognome']) &&
 		isset($_POST['email']) &&
@@ -31,14 +33,13 @@
 		$username = 'root';
 		$password = '';
 		$database_name = 'myschoolbus';
-		
 		try {
 			$connection = new PDO("mysql:host=$hostname;dbname=$database_name", $username, $password);
 			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}catch(PDOException $ex){ 
 			die('Errore connessione: '.$ex->getMessage());
 		}
-			
+		
 		try{
 			$istruzioneSQL = $connection->prepare("INSERT INTO utenti
 												(Nome, Cognome, Email, Password, Telefono, AnnoNascita, Sesso)
@@ -51,12 +52,31 @@
 			$istruzioneSQL->execute();
 		}catch(PDOException $ex){
 			die('Query errata: '.$ex->getMessage());
-		}	
+		}
+		
+		try{
+			$istruzioneSQL = $connection->prepare("SELECT CodUtente FROM utenti
+												WHERE Email='" . $datiDaCaricare[2] . "'" . 
+												"AND Password='" . $datiDaCaricare[3] . "'");
+			
+			$istruzioneSQL->execute();
+			
+			$recordTrovato = $istruzioneSQL->fetch();
+
+		}catch(PDOException $ex){
+			die('Query errata: '.$ex->getMessage());
+		}
 		
 		unset($datiDaCaricare);
 		$connection = null;
 		
-		echo 'DATI CARICATI NEL DB!!!';
+		$_SESSION['CodUtente'] = $recordTrovato[0];
+		echo "<center>";
+		echo "REGISTRAZIONE EFFETTUATA! Utente numero: " . $_SESSION['CodUtente'] . "<br>";
+		echo '<a href="veicoli.php">Gestisci veicoli</a><br/>';
+		echo '<a href="abitazioni.php">Gestisci abitazioni</a><br/>';
+		echo '<a href="scuole.php">Gestisci scuole</a><br/>';
+		echo "</center>";
 	
 	} else {
 		echo 'ACCESSO NON AUTORIZZATO';
