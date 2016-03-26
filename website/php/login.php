@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
 	if (isset($_POST['email']) &&
 		isset($_POST['password']) ) {
 		
@@ -18,30 +20,36 @@
 		}catch(PDOException $ex){ 
 			die('Errore connessione: '.$ex->getMessage());
 		}
-			
+	
 		try{
-			$istruzioneSQL = $connection->prepare("SELECT Nome, Cognome FROM utenti
+			$istruzioneSQL = $connection->prepare("SELECT CodUtente, Nome, Cognome FROM utenti
 												WHERE Email='" . $datiDaConfrontare[0] . "'" . 
 												"AND Password='" . $datiDaConfrontare[1] . "'");
 			
 			$istruzioneSQL->execute();
-			
 			$recordTrovato = $istruzioneSQL->fetch();
-
+			
 		}catch(PDOException $ex){
 			die('Query errata: '.$ex->getMessage());
-		}	
+		}
 		
 		unset($datiDaConfrontare);
 		$connection = null;
 		
+		echo "<center>";
 		if ($recordTrovato) {
-			echo "BENTORNATO ".$recordTrovato[0] . " " . $recordTrovato[1] . "!";
+			$_SESSION['CodUtente'] = $recordTrovato[0];
+			echo "LOGIN EFFETTUATO! Utente numero: " . $_SESSION['CodUtente'] . "<br>";
+			echo "BENTORNATO ".$recordTrovato[1] . " " . $recordTrovato[2] . "!<br/>";
+			echo '<a href="veicoli.php">Gestisci veicoli</a><br/>';
+			echo '<a href="abitazioni.php">Gestisci abitazioni</a><br/>';
+			echo '<a href="scuole.php">Gestisci scuole</a><br/>';
 		} else {
 			echo "NESSUN UTENTE REGISTRATO TROVATO!";
 		}
+		echo "</center>";
 	
 	} else {
-		echo 'ACCESSO NON AUTORIZZATO';
+		echo '<center>ACCESSO NON AUTORIZZATO</center>';
 	}
 ?>
