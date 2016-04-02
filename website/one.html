@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<title>MySchoolBus</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css.css">
+		<style type="text/css">
+			/*Extra small devices (portrait phones, less than 34em)
+			No media query since this is the default in Bootstrap*/
+		
+			@media (max-width: 33.9em) {	/*less than 34em*/
+				#img-1 { width: 45%; }
+				#h1-1 { font-size: 3em; }
+				#h2-1 { font-size: 1.4em; color: #ffbf00;}
+			}
+			@media (min-width: 34em) {	/*34em and up*/
+				#img-1 { width: 40%; }
+				#h1-1 { font-size: 4em; }
+				#h2-1 { font-size: 1.5em; color: #ffbf00;}
+			}
+			@media (max-width: 47.9em) {	/*less than 48em*/
+			}
+			@media (min-width: 48em) {	/*48em and up*/
+				#img-1 { width: 35%; }
+				#h1-1 { font-size: 5em; }
+				#h2-1 { font-size: 1.6em; color: #ffbf00;}
+			}
+			@media (max-width: 61.9em) {	/*less than 62em*/
+
+			}
+			@media (min-width: 62em) {	/*62em and up*/
+				#img-1 { width: 30%; }
+				#h1-1 { font-size: 6em; }
+				#h2-1 { font-size: 1.8em; color: #ffbf00;}
+			}
+			@media (max-width: 74.9em) {	/*less than 75em*/
+
+			}
+			@media (min-width: 75em) {	/*75em and up*/
+				#img-1 { width: 25%; }
+				#h1-1 { font-size: 7em; }
+				#h2-1 { font-size: 2em; color: #ffbf00;}
+				#two-three { width: 60%; }
+			}
+			
+			/*Extra large devices (large desktops)
+			No media query since the extra-large breakpoint has no upper bound on its width*/
+		</style>
+	</head>
+	<body>
+		<header>
+			<div id="one" class="container text-center">
+				<img id="img-1" src="img/logo.png"/>
+				<h1 id="h1-1">MySchoolBus</h1>
+				<h2 id="h2-1">Il modo migliore per andare a scuola</h2>
+			</div>
+		</header>
+		
+		<section id="section-one">
+			<div id="two" class="container text-center">
+				<h1 id="h1-2">Che cos'è MySchoolBus?</h1>
+				<div id="two-three" class="container text-left">
+					<p>MySchoolBus è un sito web che mette in contatto studenti, genitori, professori e personale scolastico che sono diretti alla stessa scuola</p>
+					<p>Ispirato da BlaBlaCar, il sito incentiva la diffusione del "carpooling", ovvero della condivisione di un mezzo di trasporto tra persone dirette allo stesso luogo.</p>
+					<p>MySchoolBus è mobilità sostenibile, al fine di ridurre le emissioni di gas inquinanti nel rispetto dell'ambiente.</p>
+				</div>
+			</div>
+		</section>
+		
+		<section id="section-two">
+			<div id="three" class="container text-center">
+				<h1>Iscriviti</h1>
+				<p>This is some text.</p> 
+			</div>
+		</section>
+		
+		<section id="section-three">
+			<div id="four" class="container text-center">
+				<h1 style="padding-top: 30px">Accedi</h1>
+				<form class="form-horizontal">
+					<div class="form-group" style="margin-bottom: 10px;">
+						<label for="email" class="col-xs-12 col-sm-offset-4 col-sm-1 control-label" style="padding-right: 0; padding-left: 0;">Email</label>
+						<div id="email" class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-3">
+							<input type="email" class="form-control" id="email" placeholder="Email" style="padding-right: 0;">
+						</div>
+					</div>				
+					<div class="form-group" style="margin-bottom: 10px;">
+						<label for="password" class="col-xs-12 col-sm-offset-4 col-sm-1 control-label" style="padding-right: 0; padding-left: 0;">Password</label>
+						<div id="password" class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-3">
+							<input type="password" class="form-control" id="password" placeholder="Password">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> Resta collegato
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-default col-xs-offset-2 col-xs-8 col-sm-offset-4 col-sm-4">Login</button>
+					</div>
+					<p style="font-size: 14px; padding-bottom: 40px;"><a>password dimenticata</a></p>
+				</form>
+			</div>
+		</section>
+		
+		<footer>
+			<div id="five" class="container text-center">
+				<h1>Footer</h1>
+				<p>This is some text.</p> 
+			</div>
+		</footer>
+
+	</body>
+</html>
