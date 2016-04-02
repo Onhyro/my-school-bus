@@ -1,0 +1,13 @@
+header {background-color: #262626; color: #ffbf00;}
+#section-one { background-color: #ffbf00; color: #262626; height: 50%;}
+#section-two { background-color: #262626; color: #ffbf00; height: 50%;}
+#section-three { background-color: #ffbf00; color: #262626; height: 50%;}
+footer {background-color: #262626; color: #ffbf00;}
+#h1-1 {color: #ffbf00;}
+#h2-1 {color: #ffbf00; padding-bottom: 50px}
+#one {}
+#two { padding-bottom: 50px; }
+#four {}
+#h1-2 { padding-top: 40px; padding-bottom: 20px;}
+#img-1 { padding: 55px 0 15px 0; }
+p {font-size: 1.5em;}
